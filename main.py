@@ -11,6 +11,7 @@ from TarFile import TarFile
 
 print("Start : ")
 
-
 #Creation d'un nouvelle objet tar
 Archive = Tar("TestFile.tar")
+
+Archive.parseTar();
