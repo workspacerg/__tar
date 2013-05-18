@@ -8,18 +8,37 @@ class TarDir:
     
     def __init__(self, _Param):
         """Constructor"""
-        DirName = _Param
+        self.DirName = _Param[0][0]
+        self.Niveau = _Param[0][1]
+        print "Dossier ouvert : "
+        print self.DirName
+        #print self.Niveau
+        self.listDir = _Param[1]
+        self.listFile = _Param[2]
+        
         
     def readdir(self):
-        # Ouvre le fichier passer dans le constructeur
-        print("TODO")
+        # Liste le contenue
+        print "\nContenue du dossier : "
+        
+        for i in self.listDir :
+            if i[1] == self.Niveau+1 and i[0].find(self.DirName) == 0: 
+                print i[0]
+            if self.Niveau+1 == 1 and i[1] == self.Niveau+1: 
+                print i[0]             
+                
+        for i in self.listFile :
+            if i[1] == self.Niveau+1 and i[0].find(self.DirName) == 0:
+                print i[0]
+            if self.Niveau+1 == 1 and i[1] == self.Niveau+1 : 
+                print i[0]             
         
     def close(self):
-        # Ferme l'archive.
+        # Ferme le dir
         print("TODO")
 
     def fopen(self, filename):
-        # Changement de repertoire.
+        # Ouvre le Fichier passer en parametre
         print("TODO")
     
 ######################################################################## 
