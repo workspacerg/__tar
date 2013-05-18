@@ -16,8 +16,8 @@ class Tar:
         self.CurrentDir = ["/" , 0]
         self.listDir = [["/" , 0]]
         self.listFile = list()
+        self.parseTar()
          
-        
     def open_tar(self):
         # Ouvre l'archive passer dans le constructeur
         self.f = open(self.FileName,"rb")
@@ -28,13 +28,10 @@ class Tar:
 
     def chdir_tar(self, path):
         # Changement de repertoire.
-        
-        print("TODO")
         # Verifier le chemin voulu existe
-        # Changer le repertoire courrant
-        # Envoye l'objet dir courrant
-        
-        
+        for i in self.listDir : 
+            if path == i[0] : 
+                self.CurrentDir = i
     
     def getpwd_tar(self):
         # retourne le nom du repertoire courant
@@ -42,13 +39,8 @@ class Tar:
         
     def opendir_tar(self):
         # retourne un objet de la classe tardir
-        print "\nopendir_tar() : "
         Dir = TarDir([self.CurrentDir, self.listDir , self.listFile])
         return Dir
-
-
-       
-        
     
     def parseTar(self):
         print "................................................................................"
@@ -56,9 +48,7 @@ class Tar:
         data = self.f.read()
         currentLoc = 0
         self.nbr = 0 
-        
-       
-        
+            
         while currentLoc < len(data)-512*2 :  
             TarFileName = data[currentLoc:currentLoc+100].rstrip('\000')
             
@@ -86,34 +76,10 @@ class Tar:
             else:
                 self.listDir.append([TarFileName , Niveau])
                 currentLoc += 512
-                     
+            
         self.close_tar()
-        
         self.CurrentDir = self.listDir[0]
-        """
-        print   self.listDir
-        print   self.listFile
-        
- 
-        print "\n\nAffiche que les Dossiers dans le dossier FIND et Niveu+1"
-        
-        self.CurrentDir = self.listDir[0]
-        
-        NiveauUp = 1
-        print "Dossier :"
-        for i in self.listDir :
-            if i[1] == NiveauUp and i[0].find("/") == 0  : 
-                print i[0]
-            if NiveauUp == 1 and i[1] == NiveauUp : 
-                print i[0]            
-        
-        print "Fichier : "
-        for y in self.listFile :
-            if y[1] == NiveauUp and y[0].find("Dir/") == 0  :
-                print y[0]
-            if NiveauUp == 1 and y[1] == NiveauUp : 
-                print y[0] 
-        """ 
+
         print "ParseOK"
         print "................................................................................\n"
         return [self.listFile, self.listDir] 

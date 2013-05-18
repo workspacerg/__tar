@@ -10,8 +10,8 @@ class TarDir:
         """Constructor"""
         self.DirName = _Param[0][0]
         self.Niveau = _Param[0][1]
-        print "Dossier ouvert : "
-        print self.DirName
+        #print "Dossier ouvert : "
+        #print self.DirName
         #print self.Niveau
         self.listDir = _Param[1]
         self.listFile = _Param[2]
@@ -19,7 +19,7 @@ class TarDir:
         
     def readdir(self):
         # Liste le contenue
-        print "\nContenue du dossier : "
+        print "Contenue du dossier : "
         
         for i in self.listDir :
             if i[1] == self.Niveau+1 and i[0].find(self.DirName) == 0: 
