@@ -51,13 +51,12 @@ class Tar:
             
         while currentLoc < len(data)-512*2 :  
             TarFileName = data[currentLoc:currentLoc+100].rstrip('\000')
-            
-            #print "Nom :" + TarFileName
             TarFileSize = str(int(data[currentLoc+124:currentLoc+136], 8))
-            #print "Size: " + TarFileSize
             Niveau = TarFileName.count("/")
-            #print "Niveau : " + str(Niveau)
             TarFileType = data[currentLoc+156:currentLoc+157]
+            #print "Nom :" + TarFileName
+            #print "Size: " + TarFileSize
+            #print "Niveau : " + str(Niveau)
             #print "Type is :" + TarFileType
             #self.isFileOrDir(TarFileType)  
             
