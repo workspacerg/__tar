@@ -8,11 +8,16 @@ class TarFile:
     
     def __init__(self, _Param):
         """Constructor"""
-        FileName = _Param
+        self.FileName = _Param[0]
+        self.File = _Param[2]
+        self.read(230)
+        print "je suis la"
+        
         
     def read(self, size):
         #Lecture de size octet dans le fichier, return str
-        print("TODO")
+        print "Lecture du fichier " + self.FileName 
+        print self.File
         
     def close(self):
         #Ferme le fichier

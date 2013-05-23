@@ -19,23 +19,27 @@ class TarDir:
         
     def readdir(self):
         # Liste le contenue
-        print "Contenue du dossier : "
+        #print "Contenue du dossier : "
         
         for i in self.listDir :
             if i[1] == self.Niveau+1 and i[0].find(self.DirName) == 0: 
-                print i[0]
-            if self.Niveau+1 == 1 and i[1] == self.Niveau+1: 
-                print i[0]             
+                print i[0].split('/')[-2] + '/'
+            if self.Niveau+1 == 2 and i[1] == self.Niveau+1: 
+                #print i[0].split('/')[-2] + '/'             
+                print ""
                 
         for i in self.listFile :
             if i[1] == self.Niveau+1 and i[0].find(self.DirName) == 0:
-                print i[0]
-            if self.Niveau+1 == 1 and i[1] == self.Niveau+1 : 
-                print i[0]             
+                print i[0].split('/')[-1]
+            if self.Niveau+1 == 2 and i[1] == self.Niveau+1 : 
+                print "print i[0].split('/')[-1]"            
         
+    
     def close(self):
         # Ferme le dir
         print("TODO")
+        
+        
 
     def fopen(self, filename):
         # Ouvre le Fichier passer en parametre

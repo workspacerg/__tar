@@ -11,12 +11,14 @@ class Tar:
     def __init__(self, _Param):
         """Constructor"""
         self.FileName = _Param
-        print "ouverture du fichier tar : "  + self.FileName
+        #print "ouverture du fichier tar : "  + self.FileName
         self.open_tar()
-        self.CurrentDir = ["/" , 0]
-        self.listDir = [["/" , 0]]
+        self.CurrentDir = ["/" , 1]
+        self.listDir = [["/" , 1]]
         self.listFile = list()
         self.parseTar()
+        
+        
          
     def open_tar(self):
         # Ouvre l'archive passer dans le constructeur
@@ -29,10 +31,28 @@ class Tar:
     def chdir_tar(self, path):
         # Changement de repertoire.
         # Verifier le chemin voulu existe
+
+        if path[0:3] == "../" : 
+            last =  self.CurrentDir[0].split('/')[-2] + '/'
+            Find = self.CurrentDir[0].replace(last,'',1) 
+            path = str(Find) + path[3:]
+            
+        
+        if path[0:2] == "./" :
+            path = self.CurrentDir[0] + path[2:]
+          
+        if path[0:1] != "/" :
+            path = self.CurrentDir[0] + path
+
+        
         for i in self.listDir : 
+#print  "test : " + path + " = " + i[0]
             if path == i[0] : 
                 self.CurrentDir = i
-    
+                
+        
+        
+        
     def getpwd_tar(self):
         # retourne le nom du repertoire courant
         return self.CurrentDir
@@ -50,23 +70,21 @@ class Tar:
         self.nbr = 0 
             
         while currentLoc < len(data)-512*2 :  
-            TarFileName = data[currentLoc:currentLoc+100].rstrip('\000')
+            TarFileName = "/" + data[currentLoc:currentLoc+100].rstrip('\000')
             TarFileSize = str(int(data[currentLoc+124:currentLoc+136], 8))
             Niveau = TarFileName.count("/")
             TarFileType = data[currentLoc+156:currentLoc+157]
             #print "Nom :" + TarFileName
             #print "Size: " + TarFileSize
             #print "Niveau : " + str(Niveau)
-            #print "Type is :" + TarFileType
-            #self.isFileOrDir(TarFileType)  
-            
+            #print "Type is :" + TarFileType  
             
             if TarFileType == "0" :
-                self.listFile.append([TarFileName , Niveau+1])
                 currentLoc += 512
                 TarFileContent = data[currentLoc:currentLoc+int(TarFileSize)]
                 #print "Content : \n" + TarFileContent
                 save = 0
+                self.listFile.append([TarFileName , Niveau+1 , TarFileContent])
                 
                 while save < int(TarFileSize,10) :
                     currentLoc += 512
@@ -80,6 +98,8 @@ class Tar:
         self.CurrentDir = self.listDir[0]
 
         print "ParseOK"
+        #print self.listDir
+        #print self.listFile
         print "................................................................................\n"
         return [self.listFile, self.listDir] 
     
