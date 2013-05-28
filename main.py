@@ -7,20 +7,29 @@ print("Start : ")
 Recup = ["",""]
 #Creation d'un nouvelle objet tar
 
-
-clavier = raw_input("Chemin du Tar : ")
-Archive = Tar("Dir1.tar")
+FileOpen = 0
+#clavier = raw_input("Chemin du Tar : ")
+#Archive = Tar("Dir1.tar")
 #Archive = Tar(clavier)
 #print "Current File :" + str(Archive.getpwd_tar()[0])
-Dir = Archive.opendir_tar()
+#Dir = Archive.opendir_tar()
 #Dir.readdir()
 
 while Recup[0] != "Exit" :
-    clavier = raw_input("Tar" + Archive.getpwd_tar()[0] + " &: ")
+    if FileOpen == 0 :
+        clavier = raw_input("Tar & : ")
+    else : 
+        clavier = raw_input("Tar" + Archive.getpwd_tar()[0] + " & : ")
     
     Recup = clavier.split()
-    
-    if Recup[0] == "pwd" : 
+    if Recup[0] == "opentar" : 
+        print "Ouverture d'un fichier tar"
+        Archive = Tar(Recup[1])
+        Dir = Archive.opendir_tar()
+        FileOpen = 1
+    elif FileOpen == 0 :
+        print "Aucun Fichier tar ouvert"  
+    elif Recup[0] == "pwd" : 
         print  Archive.getpwd_tar()[0]
     elif Recup[0] == "ls" : 
         Dir.readdir()      
@@ -29,10 +38,10 @@ while Recup[0] != "Exit" :
         #print "Current File :" + str(Archive.getpwd_tar()[0])
         Dir = Archive.opendir_tar()  
     elif Recup[0] == "Exit" :
-        print "Merci"
+        print "Merci"     
     else :
         print "Commande introuvable"
-        
+
     print ""
 
 print("Stop  ")
