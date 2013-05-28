@@ -19,7 +19,7 @@ while Recup[0] != "Exit" :
     if FileOpen == 0 :
         clavier = raw_input("Tar & : ")
     else : 
-        clavier = raw_input("Tar" + Archive.getpwd_tar()[0] + " & : ")
+        clavier = raw_input("Tar" + Archive.getpwd_tar()[0] + " &: ")
     
     Recup = clavier.split()
     if Recup[0] == "opentar" :
@@ -43,6 +43,9 @@ while Recup[0] != "Exit" :
             Dir = Archive.opendir_tar()  
         except IndexError:
             print "Il manque un argument"
+    elif Recup[0] == "cat" : 
+        print ""
+        Dir.fopen(Recup[1])
     elif Recup[0] == "Exit" :
         print "Merci"     
     else :
@@ -51,6 +54,9 @@ while Recup[0] != "Exit" :
     print ""
 
 print("Stop  ")
+
+
+#File = TarFile(["Dir/SSDIr/File1.txt","5","Contenue"])
 
 '''
 

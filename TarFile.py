@@ -11,7 +11,7 @@ class TarFile:
         self.FileName = _Param[0]
         self.File = _Param[2]
         self.read(230)
-        print "je suis la"
+        #print "je suis la"
         
         
     def read(self, size):

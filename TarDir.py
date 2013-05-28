@@ -1,3 +1,4 @@
+from TarFile import TarFile
 ########################################################################
 class TarDir:
     
@@ -43,7 +44,12 @@ class TarDir:
 
     def fopen(self, filename):
         # Ouvre le Fichier passer en parametre
-        print("TODO")
+        print self.DirName + filename 
+        for i in self.listFile :
+            if i[0] == self.DirName + filename :
+                print i
+                File = TarFile(i)
+         
     
 ######################################################################## 
 
