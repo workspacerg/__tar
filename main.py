@@ -22,11 +22,14 @@ while Recup[0] != "Exit" :
         clavier = raw_input("Tar" + Archive.getpwd_tar()[0] + " & : ")
     
     Recup = clavier.split()
-    if Recup[0] == "opentar" : 
-        print "Ouverture d'un fichier tar"
-        Archive = Tar(Recup[1])
-        Dir = Archive.opendir_tar()
-        FileOpen = 1
+    if Recup[0] == "opentar" :
+        try : 
+            Archive = Tar(Recup[1])
+            Dir = Archive.opendir_tar()
+            FileOpen = 1
+        except IndexError:
+            print "Pas de fichier en parametre"        
+        
     elif FileOpen == 0 :
         print "Aucun Fichier tar ouvert"  
     elif Recup[0] == "pwd" : 
@@ -34,9 +37,12 @@ while Recup[0] != "Exit" :
     elif Recup[0] == "ls" : 
         Dir.readdir()      
     elif Recup[0] == "cd" :
-        Archive.chdir_tar(Recup[1])
-        #print "Current File :" + str(Archive.getpwd_tar()[0])
-        Dir = Archive.opendir_tar()  
+        try:
+            Archive.chdir_tar(Recup[1])
+            #print "Current File :" + str(Archive.getpwd_tar()[0])
+            Dir = Archive.opendir_tar()  
+        except IndexError:
+            print "Il manque un argument"
     elif Recup[0] == "Exit" :
         print "Merci"     
     else :
