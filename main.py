@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 from Tar import Tar
 from TarDir import TarDir
 from TarFile import TarFile
@@ -16,8 +18,9 @@ FileOpen = 0
 #Dir.readdir()
 
 while Recup[0] != "Exit" :
+    
     if FileOpen == 0 :
-        clavier = raw_input("Tar & : ")
+            clavier = raw_input("Tar & : ")
     else : 
         clavier = raw_input("Tar" + Archive.getpwd_tar()[0] + " &: ")
     
@@ -45,7 +48,19 @@ while Recup[0] != "Exit" :
             print "Il manque un argument"
     elif Recup[0] == "cat" : 
         print ""
-        Dir.fopen(Recup[1])
+        File = Dir.fopen(Recup[1])
+        File.read(File.Size)
+    elif Recup[0] == "seek" :
+        try:   
+            TarFile.seek(int(Recup[1])  )
+
+            try:
+                 File
+            except NameError:
+                print "Aucun fichier ouvert" 
+
+        except IndexError:
+            print "Il manque un argument"
     elif Recup[0] == "Exit" :
         print "Merci"     
     else :

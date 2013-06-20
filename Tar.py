@@ -72,10 +72,11 @@ class Tar:
         while currentLoc < len(data)-512*2 :  
             TarFileName = "/" + data[currentLoc:currentLoc+100].rstrip('\000')
             TarFileSize = str(int(data[currentLoc+124:currentLoc+136], 8))
+            SizeOfFile = int(data[currentLoc+124:currentLoc+136], 8)
             Niveau = TarFileName.count("/")
             TarFileType = data[currentLoc+156:currentLoc+157]
             #print "Nom :" + TarFileName
-            #print "Size: " + TarFileSize
+            #print "Size: " + str(SizeOfFile)
             #print "Niveau : " + str(Niveau)
             #print "Type is :" + TarFileType  
             
@@ -84,7 +85,7 @@ class Tar:
                 TarFileContent = data[currentLoc:currentLoc+int(TarFileSize)]
                 #print "Content : \n" + TarFileContent
                 save = 0
-                self.listFile.append([TarFileName , Niveau+1 , TarFileContent])
+                self.listFile.append([TarFileName , Niveau+1 , TarFileContent, SizeOfFile , currentLoc] )
                 
                 while save < int(TarFileSize,10) :
                     currentLoc += 512
@@ -94,7 +95,7 @@ class Tar:
                 self.listDir.append([TarFileName , Niveau])
                 currentLoc += 512
             
-        self.close_tar()
+        #self.close_tar()
         self.CurrentDir = self.listDir[0]
 
         print "ParseOK"

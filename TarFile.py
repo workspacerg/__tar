@@ -1,30 +1,29 @@
 ########################################################################
 class TarFile:
     
-    #----------------------------------------------------------------------
-    #
-    #
-    #----------------------------------------------------------------------
-    
+    offset = 0
+
     def __init__(self, _Param):
         """Constructor"""
-        self.FileName = _Param[0]
-        self.File = _Param[2]
-        self.read(230)
-        #print "je suis la"
-        
+        self.FileName   = _Param[0]
+        self.Data       = _Param[2]
+        self.Size       = _Param[3]
         
     def read(self, size):
-        #Lecture de size octet dans le fichier, return str
-        print "Lecture du fichier " + self.FileName 
-        print self.File
-        
-    def close(self):
-        #Ferme le fichier
-        print("TODO")
+        if TarFile.offset > size :
+            print "Le curseur courant est en fin de fichier" 
+        else :
+            print self.Data[TarFile.offset:size]
 
-    def seek(self, offset, whence=0):
-        #place en position offset le pointeur courant
-        print("TODO")
+    def seek(offset, whence=0):
+        TarFile.offset = offset
+
+    seek = staticmethod(seek)
     
+    def close(self):
+        self.FileName   = ""
+        self.Data       = ""
+        self.Size       = 0;
+        offset          = 0;     
+
 ######################################################################## 
