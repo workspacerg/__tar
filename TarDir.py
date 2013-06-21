@@ -11,9 +11,9 @@ class TarDir:
         
     def readdir(self):
         # Liste le contenue
-        #print "Contenue du dossier : "
-        
+    
         for i in self.listDir :
+            #A regarder de plus près
             if i[1] == self.Niveau+1 and i[0].find(self.DirName) == 0: 
                 print i[0].split('/')[-2] + '/'
             if self.Niveau+1 == 2 and i[1] == self.Niveau+1: 
@@ -37,7 +37,6 @@ class TarDir:
         print self.DirName + filename 
         for i in self.listFile :
             if i[0] == self.DirName + filename :
-                #print i
                 File = TarFile(i)
                 return File
              
