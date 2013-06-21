@@ -10,20 +10,17 @@ Recup = ["",""]
 #Creation d'un nouvelle objet tar
 
 FileOpen = 0
-#clavier = raw_input("Chemin du Tar : ")
-#Archive = Tar("Dir1.tar")
-#Archive = Tar(clavier)
-#print "Current File :" + str(Archive.getpwd_tar()[0])
-#Dir = Archive.opendir_tar()
-#Dir.readdir()
 
+#Debut de l'intérpreteur de commande 
 while Recup[0] != "Exit" :
     
+    #Lors de la premiere ouverture 
     if FileOpen == 0 :
             clavier = raw_input("Tar & : ")
     else : 
         clavier = raw_input("Tar" + Archive.getpwd_tar()[0] + " &: ")
     
+    #Recupération des différents paramètres séparer par des " "
     Recup = clavier.split()
     if Recup[0] == "opentar" :
         try : 
@@ -35,10 +32,13 @@ while Recup[0] != "Exit" :
         
     elif FileOpen == 0 :
         print "Aucun Fichier tar ouvert"  
+    
     elif Recup[0] == "pwd" : 
         print  Archive.getpwd_tar()[0]
+    
     elif Recup[0] == "ls" : 
         Dir.readdir()      
+    
     elif Recup[0] == "cd" :
         try:
             Archive.chdir_tar(Recup[1])
@@ -46,14 +46,15 @@ while Recup[0] != "Exit" :
             Dir = Archive.opendir_tar()  
         except IndexError:
             print "Il manque un argument"
+    
     elif Recup[0] == "cat" : 
         print ""
         File = Dir.fopen(Recup[1])
         File.read(File.Size)
+    
     elif Recup[0] == "seek" :
         try:   
             TarFile.seek(int(Recup[1])  )
-
             try:
                  File
             except NameError:
@@ -61,75 +62,13 @@ while Recup[0] != "Exit" :
 
         except IndexError:
             print "Il manque un argument"
+    
     elif Recup[0] == "Exit" :
         print "Merci"     
+    
     else :
         print "Commande introuvable"
 
     print ""
 
 print("Stop  ")
-
-
-#File = TarFile(["Dir/SSDIr/File1.txt","5","Contenue"])
-
-'''
-
-Archive.chdir_tar("/Dir1/")
-print "Current File :" + str(Archive.getpwd_tar()[0])
-Dir = Archive.opendir_tar()
-Dir.readdir()
-print "\n"
-
-
-Archive.chdir_tar("/")
-print "Current File :" + str(Archive.getpwd_tar()[0])
-Dir = Archive.opendir_tar()
-Dir.readdir()
-print "\n"
-
-Archive.chdir_tar("/Dir1/SDir1/")
-print "Current File :" + str(Archive.getpwd_tar()[0])
-Dir = Archive.opendir_tar()
-Dir.readdir()
-print "\n"
-
-Archive.chdir_tar("../")
-print "Current File :" + str(Archive.getpwd_tar()[0])
-Dir = Archive.opendir_tar()
-Dir.readdir()
-print "\n"
-
-Archive.chdir_tar("./SDir1/")
-print "Current File :" + str(Archive.getpwd_tar()[0])
-Dir = Archive.opendir_tar()
-Dir.readdir()
-print "\n"
-
-Archive.chdir_tar("../SDir2/")
-print "Current File :" + str(Archive.getpwd_tar()[0])
-Dir = Archive.opendir_tar()
-Dir.readdir()
-print "pwd : " + Archive.getpwd_tar()[0]
-print "\n"
-
-Archive.chdir_tar("../")
-print "Current File :" + str(Archive.getpwd_tar()[0])
-Dir = Archive.opendir_tar()
-Dir.readdir()
-print "pwd : " + Archive.getpwd_tar()[0]
-print "\n"
-
-Archive.chdir_tar("SDir2/SSDir1/")
-print "Current File :" + str(Archive.getpwd_tar()[0])
-Dir = Archive.opendir_tar()
-Dir.readdir()
-print "pwd : " + Archive.getpwd_tar()[0]
-print "\n"
-
-
-
-
-#print "Test de lecture de fichier : "
-#File = TarFile(["Dir/SSDIr/File1.txt","5","Contenue"])
-'''
