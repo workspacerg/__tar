@@ -11,7 +11,7 @@ Recup = ["",""]
 
 FileOpen = 0
 
-#Debut de l'intérpreteur de commande 
+#Debut de l'interpreteur de commande 
 while Recup[0] != "Exit" :
     
     #Lors de la premiere ouverture 
@@ -20,7 +20,7 @@ while Recup[0] != "Exit" :
     else : 
         clavier = raw_input("Tar" + Archive.getpwd_tar()[0] + " &: ")
     
-    #Recupération des différents paramètres séparer par des " "
+    #Recuperation des differents parametres separer par des " "
     Recup = clavier.split()
     if Recup[0] == "opentar" :
         try : 
