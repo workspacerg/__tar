@@ -58,7 +58,7 @@ class Tar:
         Dir = TarDir([self.CurrentDir, self.listDir , self.listFile])
         return Dir
         
-    #Parcour tout le fichier tar ouvert et ordonne les données dans une liste
+   # # Parcour tout le fichier tar ouvert et ordonne les donnees dans une liste
     def parseTar(self):
         print "................................................................................"
         print "Debut du parsage complet :" 
@@ -74,7 +74,7 @@ class Tar:
             Niveau = TarFileName.count("/")
             TarFileType = data[currentLoc+156:currentLoc+157]
             
-            #Si un fichier est deteté il serra traiter dans liste file
+            #Si un fichier est detecte il sera traite dans liste file
             if TarFileType == "0" :
                 currentLoc += 512
                 TarFileContent = data[currentLoc:currentLoc+int(TarFileSize)]
