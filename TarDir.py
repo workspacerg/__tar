@@ -13,7 +13,7 @@ class TarDir:
         # Liste le contenue
     
         for i in self.listDir :
-            #A regarder de plus près
+            #A regarder de plus pres
             if i[1] == self.Niveau+1 and i[0].find(self.DirName) == 0: 
                 print i[0].split('/')[-2] + '/'
             if self.Niveau+1 == 2 and i[1] == self.Niveau+1: 
