@@ -1,4 +1,6 @@
 from TarFile import TarFile
+from termcolor import colored
+
 ########################################################################
 class TarDir:
     
@@ -15,14 +17,14 @@ class TarDir:
         for i in self.listDir :
             #A regarder de plus pres
             if i[1] == self.Niveau+1 and i[0].find(self.DirName) == 0: 
-                print i[0].split('/')[-2] + '/'
+                print colored(i[0].split('/')[-2] + '/','green')
             if self.Niveau+1 == 2 and i[1] == self.Niveau+1: 
                 #print i[0].split('/')[-2] + '/'             
                 print ""
                 
         for i in self.listFile :
             if i[1] == self.Niveau+1 and i[0].find(self.DirName) == 0:
-                print i[0].split('/')[-1]
+                print colored(i[0].split('/')[-1], 'magenta')
             if self.Niveau+1 == 2 and i[1] == self.Niveau+1 : 
                 print "print i[0].split('/')[-1]"            
         

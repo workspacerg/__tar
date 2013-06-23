@@ -72,7 +72,7 @@ while Recup[0] != "Exit" :
             except IndexError:
                 print colored("Il manque un argument",'yellow')
         
-        elif Recup[0] == "Exit" :
+        elif Recup[0] == "Exit" | Recup[0] == "exit":
             print "Merci" 
 
         
@@ -84,5 +84,9 @@ while Recup[0] != "Exit" :
     except IndexError:
         print colored("Aucune comande",'white','on_red')
         Recup = " "
+    except KeyboardInterrupt:
+        print colored("\nUne combinaison clavier impose la fermeture du script",'white','on_red')
+        raise SystemExit(0)
+
 
 print("Stop  ")
