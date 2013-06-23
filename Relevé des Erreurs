@@ -1,0 +1,20 @@
+Commandes lancées : 
+
+  - opentar Dir1.tar
+    => Succes
+  - opentar TestFile.tar
+    => Succes
+    
+Dans le sujet, il dise qu'il faut ouvrir une seule archive tar. Donc je sais pas si c'est OK
+
+
+Tar/TestFile/ &: ls
+azerty/
+test/
+xLastDir/
+
+Tar/TestFile/ &: cat
+
+=> Il tente d'ouvrir un fichier inexistant je crois, Doit-on rajouter une exception
+
+

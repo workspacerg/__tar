@@ -24,9 +24,16 @@ while Recup[0] != "Exit" :
     Recup = clavier.split()
     if Recup[0] == "opentar" :
         try : 
-            Archive = Tar(Recup[1])
-            Dir = Archive.opendir_tar()
-            FileOpen = 1
+            if Recup[1].split(".")[-1] != "tar":
+                print "Le fichier ouvert n'est pas un fichier tar"
+            elif FileOpen == 1 :
+                print "Un fichier tar est deja en cour de lecture."
+            else :
+                Archive = Tar(Recup[1])
+                print "test : "
+                print Recup[1].split(".")[-1]
+                Dir = Archive.opendir_tar()
+                FileOpen = 1
         except IndexError:
             print "Pas de fichier en parametre"        
         
@@ -64,7 +71,8 @@ while Recup[0] != "Exit" :
             print "Il manque un argument"
     
     elif Recup[0] == "Exit" :
-        print "Merci"     
+        print "Merci" 
+
     
     else :
         print "Commande introuvable"
