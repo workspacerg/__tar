@@ -14,12 +14,12 @@ class TarFile:
         if TarFile.offset > size :
             print "Le curseur courant est en fin de fichier" 
         else :
-            #Affiche le texte l'offset static à la fin du fichier.
+           
             print self.Data[TarFile.offset:size]
 
     def seek(offset, whence=0):
         TarFile.offset = offset
-    #Declaration d'une méthode static de offset
+    #Declaration d'une methode static de offset
     seek = staticmethod(seek)
     
     def close(self):
