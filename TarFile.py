@@ -1,3 +1,5 @@
+from termcolor import colored
+
 ########################################################################
 class TarFile:
     
@@ -12,9 +14,8 @@ class TarFile:
         
     def read(self, size):
         if TarFile.offset > size :
-            print "Le curseur courant est en fin de fichier" 
+            print colored("Le curseur courant est en fin de fichier", 'white','on_cyan' )
         else :
-           
             print self.Data[TarFile.offset:size]
 
     def seek(offset, whence=0):

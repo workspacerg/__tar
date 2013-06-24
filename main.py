@@ -27,9 +27,9 @@ while Recup[0] != "Exit" :
         if Recup[0] == "opentar" :
             try : 
                 if Recup[1].split(".")[-1] != "tar":
-                    print colored("Le fichier ouvert n'est pas un fichier tar",'red')
+                    print colored("Le fichier ouvert n'est pas un fichier tar",'white','on_red')
                 elif FileOpen == 1 :
-                    print colored("Un fichier tar est deja en cour de lecture.",'red')
+                    print colored("Un fichier tar est deja en cour de lecture.",'white','on_red')
                 else :
                     Archive = Tar(Recup[1])
                     print "test : "
@@ -37,10 +37,10 @@ while Recup[0] != "Exit" :
                     Dir = Archive.opendir_tar()
                     FileOpen = 1
             except IndexError:
-                print colored("Pas de fichier en parametre", 'yellow')        
+                print colored("Pas de fichier en parametre", 'white','on_red')        
             
         elif FileOpen == 0 :
-            print colored("Aucun Fichier tar ouvert",'yellow')  
+            print colored("Aucun Fichier tar ouvert",'white','on_cyan')  
         
         elif Recup[0] == "pwd" : 
             print  Archive.getpwd_tar()[0]
@@ -54,30 +54,31 @@ while Recup[0] != "Exit" :
                 #print "Current File :" + str(Archive.getpwd_tar()[0])
                 Dir = Archive.opendir_tar()  
             except IndexError:
-                print colored("Il manque un argument",'yellow')
+                print colored("Il manque un argument",'white','on_cyan')
         
         elif Recup[0] == "cat" : 
-            print ""
-            File = Dir.fopen(Recup[1])
-            File.read(File.Size)
-        
+            try : 
+                File = Dir.fopen(Recup[1])
+                File.read(File.Size)
+            except AttributeError:
+                colored("Aucun fichier de ce nom dans le repertoire",'white','on_cyan')
+
         elif Recup[0] == "seek" :
             try:   
                 TarFile.seek(int(Recup[1])  )
                 try:
                      File
                 except NameError:
-                    print colored("Aucun fichier ouvert","red")
+                    print colored("Aucun fichier ouvert",'white','on_cyan')
 
             except IndexError:
-                print colored("Il manque un argument",'yellow')
+                print colored("Il manque un argument",'white','on_red')
         
-        elif Recup[0] == "Exit" | Recup[0] == "exit":
+        elif Recup[0] == "Exit" :
             print "Merci" 
 
-        
         else :
-            print colored("Commande introuvable",'red')
+            print colored("Commande introuvable", 'white','on_cyan')
 
         print ""
 
