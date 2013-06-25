@@ -36,11 +36,17 @@ class TarDir:
         
     def fopen(self, filename):
         # Ouvre le Fichier passer en parametre
-        print self.DirName + filename 
+        #print self.DirName + filename
+        FindFile = 0 
         for i in self.listFile :
             if i[0] == self.DirName + filename :
+                FindFile = 1
                 File = TarFile(i)
                 return File
+
+    
+
+
         
              
 ######################################################################## 
