@@ -1,5 +1,5 @@
 #!/usr/bin/python
-
+ 
 from Tar import Tar
 from TarDir import TarDir
 from TarFile import TarFile
@@ -46,7 +46,17 @@ while Recup[0] != "Exit" :
             print  Archive.getpwd_tar()[0]
         
         elif Recup[0] == "ls" : 
-            Dir.readdir()      
+            try : 
+                
+                if Recup[1] == "-r" : 
+                    Dir.readdir(1)
+                else: 
+                    print colored("Option inconnue",'white','on_cyan') 
+                    Dir.readdir(0)
+                    
+            except IndexError:
+                Dir.readdir(0)
+              
         
         elif Recup[0] == "cd" :
             try:

@@ -1,6 +1,6 @@
 from TarDir import TarDir
 from TarFile import TarFile
-
+ 
 ########################################################################
 class Tar:
     
@@ -44,9 +44,11 @@ class Tar:
 
         
         for i in self.listDir : 
-#print  "test : " + path + " = " + i[0]
+            #print  "test : " + path + " = " + i[0]
             if path == i[0] : 
                 self.CurrentDir = i
+
+        #rint self.CurrentDir
         
         
     def getpwd_tar(self):
