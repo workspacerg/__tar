@@ -32,8 +32,6 @@ while Recup[0] != "Exit" :
                     print colored("Un fichier tar est deja en cour de lecture.",'white','on_red')
                 else :
                     Archive = Tar(Recup[1])
-                    print "test : "
-                    print Recup[1].split(".")[-1]
                     Dir = Archive.opendir_tar()
                     FileOpen = 1
             except IndexError:
@@ -50,6 +48,8 @@ while Recup[0] != "Exit" :
                 
                 if Recup[1] == "-r" : 
                     Dir.readdir(1)
+                elif Recup[1] == "-l" :
+                    Dir.readdir(2)
                 else: 
                     print colored("Option inconnue",'white','on_cyan') 
                     Dir.readdir(0)
@@ -83,6 +83,28 @@ while Recup[0] != "Exit" :
                     File = Dir.fopen(Recup[1])  
                     OLDNAME = Recup[1].split("/")[-1]                      
                     File.read(File.Size)
+
+            except AttributeError:
+                print colored("Aucun fichier de ce nom dans le repertoire",'white','on_cyan')
+
+        elif Recup[0] == "part" : 
+            try : 
+                try : 
+                    
+                    if (Recup[1].split("/")[-1]) == OLDNAME :
+                        File.readpart(File.Size,Recup[2],Recup[3])
+                    
+                    else : 
+                        File = Dir.fopen(Recup[1])
+                        OLDNAME = Recup[1].split("/")[-1]
+                        File.readpart(File.Size,Recup[2],Recup[3])
+                    
+
+                except NameError:
+                    File = Dir.fopen(Recup[1])  
+                    OLDNAME = Recup[1].split("/")[-1]                      
+                    File.readpart(File.Size,Recup[2],Recup[3])
+
 
             except AttributeError:
                 print colored("Aucun fichier de ce nom dans le repertoire",'white','on_cyan')

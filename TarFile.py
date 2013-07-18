@@ -22,6 +22,13 @@ class TarFile:
 
     def seek(self, offset, whence=0):
         self.offset     = offset
+
+    def readpart(self, size, start, end):
+        
+        if int(start)> size :
+            print colored("Le fichier est trop petit pour votre requette", 'white','on_cyan' )
+        else :
+            print self.Data[int(start):int(end)]
     
     def close(self):
         self.FileName   = ""

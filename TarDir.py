@@ -19,20 +19,24 @@ class TarDir:
             if i[1] == self.Niveau+1 and i[0].find(self.DirName) == 0: 
                 print colored(i[0].split('/')[-2] + '/','green')
                 temp = self.DirName+i[0].split('/')[-2] + '/'
+                if _Param == 2 :
+                    print colored("     -> is directory : " + i[0],'green')
                 if _Param == 1 : 
                     #Recurcivite
                     for y in self.listDir :
                         if y[1] == self.Niveau+2 and y[0].find(self.DirName) == 0: 
                             print colored("  |  " + y[0].split('/')[-2] + '/','green')
                             
-                            for z in self.listFile :
-                                if z[1] == self.Niveau+2 and z[0].find(temp) == 0:
-                                    print colored("  |  " + z[0].split('/')[-1], 'magenta')
+                    for z in self.listFile :
+                        if z[1] == self.Niveau+2 and z[0].find(temp) == 0:
+                            print colored("  |  " + z[0].split('/')[-1], 'magenta')
                 
                     
         for i in self.listFile :
             if i[1] == self.Niveau+1 and i[0].find(self.DirName) == 0:
                 print colored(i[0].split('/')[-1], 'magenta')
+                if _Param == 2 :
+                    print colored("     -> fichier de " + str(i[3]) + " octet localiser dans : " + i[0] , 'magenta')
            
                       
         
